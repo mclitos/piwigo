@@ -1,0 +1,29 @@
+services:
+
+  piwigo:
+    image: mathieuruellan/piwigo:latest
+    container_name: piwigo
+    depends_on:
+      - mariadb
+    volumes:
+      - ./piwigo/galleries:/var/www/galleries
+      - ./piwigo/local:/var/www/local
+      - ./piwigo/plugins:/var/www/plugins
+      - ./piwigo/themes:/var/www/themes
+      - ./piwigo/cache:/var/www/_data/i
+      - ./piwigo/upload:/var/www/upload   
+    ports:
+      - "8280:80"
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:latest
+    container_name: piwigo-db
+    volumes:
+       - ./piwigo-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Mys3cr3to
+      - MYSQL_DATABASE=piwigo
+      - MYSQL_USER=piwigo
+      - MYSQL_PASSWORD=Mys3cr3to
+    restart: unless-stopped     
