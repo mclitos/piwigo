@@ -12,7 +12,7 @@ cd piwigo
 ```
 docker compose up -d
 ```
-## Ver en "http://ip:8200"
+## Ver en "http://ip:8280"
 Conexión a la base dew datos
 
 ### MySQL 
